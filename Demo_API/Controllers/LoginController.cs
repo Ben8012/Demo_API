@@ -33,7 +33,6 @@ namespace Demo_API.Controllers
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }

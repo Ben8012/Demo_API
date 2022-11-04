@@ -33,7 +33,7 @@ namespace Demo_API.Controllers
             catch (DbException ex)
             {
 #if DEBUG
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
 #else
                 _logger.LogError(ex,ex.Message);
                 return BadRequest( new { Message = "Un probleme est survenu avec la base de donnée"});
@@ -55,10 +55,10 @@ namespace Demo_API.Controllers
             {
                 return Ok(_connection.ExecuteReader(command, dr => dr.ToContact()).SingleOrDefault());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                return BadRequest(ex.Message);
             }
         }
 
@@ -88,7 +88,7 @@ namespace Demo_API.Controllers
             }
             else
             {
-                return BadRequest(new {Message = " no data insert, something wrong with database"});
+                return BadRequest(new {Message = "Un probleme est survenu, l'insertion dans la base de donnée a échouée" });
             }
         }
 
