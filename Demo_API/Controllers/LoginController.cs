@@ -3,6 +3,7 @@ using Demo_API.Models.Forms;
 using Demo_API.Models.Mappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using Tools;
 
 namespace Demo_API.Controllers
@@ -20,7 +21,13 @@ namespace Demo_API.Controllers
             _logger = logger;
         }
 
-        [HttpPost("Login")]
+
+        /// <summary>
+        /// pour se connecter
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [HttpPost]
         public IActionResult Login(LoginForm form)
         {
             Command command = new Command("SELECT Id, LastName, FirstName, Email, Birthdate FROM [User] WHERE Email = @Email AND Password = @Password", false);
@@ -29,7 +36,14 @@ namespace Demo_API.Controllers
 
             try
             {
-                return Ok(_connection.ExecuteReader(command, dr => dr.ToUser()).SingleOrDefault());
+                User? user = _connection.ExecuteReader(command, dr => dr.ToUser()).SingleOrDefault();
+
+                if(user == null)
+                {
+                   return BadRequest(new { Message = "L'email incorrect"});
+                   // return Problem("L'email incorrect", statusCode: (int)HttpStatusCode.BadRequest);
+                }
+                return Ok(user);
             }
             catch (Exception ex)
             {

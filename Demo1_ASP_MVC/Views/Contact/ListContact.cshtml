@@ -1,0 +1,85 @@
+﻿@using Demo1_ASP_MVC.Models.ContactModels
+
+@model Demo1_ASP_MVC.Models.ViewModels.ContactVM.ListContactVM
+
+<div class="container  row">
+    <div class ="col-9 text-center ">
+        <h1>Liste des contacts</h1>
+
+        <a 
+            class="btn btn-primary"
+            asp-action="AddContact">
+            Ajouter
+        </a>
+
+
+        @if (@Model.NbContact > 0)
+        {
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Surnom</th>
+                        <th>Tel</th>
+                        <th>Email</th>
+                        <th>Date de naissance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                   @foreach (Contact c in Model.Contacts)
+                    {
+                        <tr>
+                            <td>@c.LastName</td>
+                            <td>@c.FirstName</td>
+                            <td>@(c.SurName == null ? "Pas de surnom 😭" : c.SurName)</td>
+                            <td>@c.Phone</td>
+                            <td>@c.Email</td>
+                            <td>@(c.Birthdate == null ? "Inconnue" : c.Birthdate.ToString())</td>
+                       
+                            <td>
+                                <a class="btn btn-secondary" asp-controller="Contact" asp-action="Update" asp-route-id="@c.Id">✏ Modifier</a>
+                                <a class="btn btn-danger" asp-controller="Contact" asp-action="Delete" asp-route-id="@c.Id">🗑 Supprimer</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        }
+
+@*
+            {
+
+            <br />
+            <h2>La liste contient @Model.NbContact contact@(@Model.NbContact > 1 ? "s" : "")</h2>  
+            <br />
+     
+            <br />
+
+            <ul class ="d-flex flex-wrap justify-content-center list-unstyled ">
+                @foreach (Contact contact in Model.Contacts)
+                {
+                    <li class="m-4">
+                        <div class =" p-2 border border-dark rounded-2 w-200">
+                            <h2>N° : @contact.Id</h2>
+                            <h2>Prénom : @contact.FirstName</h2>
+                            <h2>Nom : @contact.LastName</h2>
+                            <h2>Surnom : @contact.SurName</h2>
+                            <h2>Téléphone : @contact.Phone</h2>
+                            <h2>Email : @contact.Email</h2>
+                            <h2>Date de naissance : @contact.Birthdate</h2>
+
+                            <a class="btn btn-danger" asp-route-id="@contact.Id" asp-action="DeleteContact"> Supprimer </a>
+                            <a class="btn btn-warning" asp-route-id=@contact.Id asp-action="ModifyContact"> Modifier </a>
+                        </div>
+                    </li>  
+                }
+            </ul>*@
+        
+    </div>
+</div>

@@ -7,6 +7,7 @@ namespace Demo_API.Models.Mappers
     {
         internal static Contact ToContact(this DbDataReader reader)
         {
+
             return new Contact()
             {
                 Id = (int)reader["Id"],
@@ -14,6 +15,8 @@ namespace Demo_API.Models.Mappers
                 LastName = (string)reader["LastName"],
                 Birthdate = (DateTime)reader["Birthdate"],
                 Email = (string)reader["Email"],
+                SurName = reader["SurName"]==DBNull.Value ? null : (string?)reader["SurName"],
+                Phone = reader["Phone"] == DBNull.Value ? null : (string?)reader["Phone"],
             };
         }
 

@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="text-center container-md ">
+    <h2>Tableau croisé</h2>
+    
+    @{
+        int[,] tab = new int[10, 10];
+        void CreateTable(int[,] tab){
+                <div class="d-flex justify-content-center m-2">
+                    <table >
+                     @for (var i = 0; i < tab.GetLongLength(0); i++)
+                       {
+                           <tr>
+                           @for (var j = 0; j < tab.GetLongLength(1); j++)
+                           {
+                                <td>
+                                    <div style="border : solid 1px black" class="p-2">@((i+1)*(j+1))</div> 
+                                </td>
+                           }
+                           </tr>
+                       }
+
+                    </table>
+                </div>
+        }
+    }
+    <div>@{CreateTable(tab);}</div>
+</div>

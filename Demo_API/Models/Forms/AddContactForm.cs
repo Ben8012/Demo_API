@@ -19,5 +19,7 @@ namespace Demo_API.Models.Forms
         public string Email { get; set; }
         [Required]
         public DateTime Birthdate { get; set; }
+
+        public int UserId { get; set; }
     }
 }

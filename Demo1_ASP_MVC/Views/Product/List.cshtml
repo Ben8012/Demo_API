@@ -1,0 +1,37 @@
+﻿@model Demo1_ASP_MVC.Models.ViewModels.ListViewModel
+
+<h1>@ViewData["Title"] @ViewData["Title2"]</h1>
+
+
+<h2> Encodez un nouveau produit</h2>
+<br />
+<form class="container d-flex flex-column justify-content-center" asp-action="AddProduct">
+    <div >
+        <label for="product">Nom : </label>
+        <input class="form-control w-25" type="text" name="product" id="product" >
+    </div>
+    <br />
+    <div >
+        <input class="btn btn-primary" type="submit"  value="Validez">
+    </div>
+</form>   
+
+
+@if (@Model.NbProduit > 0)
+    {
+
+    <br />
+    <h2>La liste contient @Model.NbProduit produit@(@Model.NbProduit > 1 ? "s" : "")</h2>  
+    <br />
+    <br />
+
+    <ul class ="d-flex flex-wrap justify-content-center list-unstyled ">
+        @foreach (Product product in Model.Products)
+        {
+            Html.RenderPartial("_ProductListPartialView",product);
+        }
+    </ul>
+
+    }
+
+     

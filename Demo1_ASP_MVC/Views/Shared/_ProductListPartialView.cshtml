@@ -1,0 +1,16 @@
+﻿@model Demo1_ASP_MVC.Models.Product
+
+    <li class="m-4">
+        <div class =" p-2 border border-dark rounded-2 w-200">
+            <h4>Nom : @Model.Nom</h4>
+    
+            <h4>Prix : @Model.Prix €</h4>
+  
+            <h4>@(@Model.Stock > 10 ? "En stock" : @Model.Stock > 5 ? "Presque épuisé" : " A commander") </h4>
+        </div>
+    </li>  
+
+   
+
+<br />
+<br />

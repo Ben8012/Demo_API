@@ -1,0 +1,50 @@
+﻿@model Demo1_ASP_MVC.Models.ViewModels.ContactVM.AddContactVM
+
+
+<div class="container">
+     <h1> Ajouter un contact</h1>
+    <form asp-action="AddContact">
+
+          <div class="form-group">
+            <label asp-for=FirstName></label>
+            <input type="text" class="form-control" id="" asp-for=FirstName value="tom">
+            <span asp-validation-for=FirstName class="alert-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label asp-for=LastName></label>
+            <input type="text" class="form-control" id="" asp-for=LastName value="tom">
+            <span asp-validation-for=LastName class="alert-danger"></span>
+          </div>
+
+          <div class="form-group">
+           <label asp-for=SurName></label>
+            <input type="text" class="form-control" id="" asp-for=SurName value="tom">
+            <span asp-validation-for=SurName class="alert-danger"></span>
+          </div>
+
+          <div class="form-group">
+            <label asp-for=Email></label>
+            <input type="email" class="form-control" id="" asp-for=Email value="tom@mail.com">
+            <span asp-validation-for=Email class="alert-danger"></span>
+          </div>
+
+           <div class="form-group">
+            <label asp-for=Phone></label>
+            <input type="text" class="form-control" id="" asp-for=Phone value="0945/123456">
+            <span asp-validation-for=Phone class="alert-danger"></span>
+          </div>
+        
+          <div class="form-group">
+           <label asp-for=Birthdate></label>
+            <input type="date" class="form-control" id="" asp-for=Birthdate value="1980-12-10">
+            <span asp-validation-for=Birthdate class="alert-danger"></span>
+          </div>
+          <br />
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <a  class="btn btn-danger" asp-action="ListContact">Annuler</a>
+
+          </div>   
+    </form>
+</div>
