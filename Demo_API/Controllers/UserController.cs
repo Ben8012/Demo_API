@@ -15,7 +15,7 @@ namespace Demo_API.Controllers
         private readonly Connection _connection;
         private readonly ILogger _logger;
 
-        public UserController(ILogger<ContactController> logger, Connection connection)
+        public UserController(ILogger<UserController> logger, Connection connection)
         {
             _connection = connection;
             _logger = logger;

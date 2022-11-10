@@ -22,11 +22,11 @@ namespace Demo_API.Controllers
             _logger = logger;
         }
 
-        [HttpGet("GetAll/{Userid}")]
+        [HttpGet("GetAll")]
         public IActionResult GetAll(int id)
         {
-            Command command = new Command("SELECT Id, LastName, FirstName, Email, Birthdate, SurName, Phone FROM Contact Where @UserId = UserId;", false);
-            command.AddParameter("UserId", id);
+            Command command = new Command("SELECT Id, LastName, FirstName, Email, Birthdate, SurName, Phone FROM Contact;", false);
+            
             try
             {
                 return Ok(_connection.ExecuteReader(command, dr => dr.ToContact()).ToList());

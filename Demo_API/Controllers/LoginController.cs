@@ -40,7 +40,7 @@ namespace Demo_API.Controllers
 
                 if(user == null)
                 {
-                   return BadRequest(new { Message = "L'email incorrect"});
+                   return BadRequest(new { Message = "Email ou mot de passe incorrect "});
                    // return Problem("L'email incorrect", statusCode: (int)HttpStatusCode.BadRequest);
                 }
                 return Ok(user);
